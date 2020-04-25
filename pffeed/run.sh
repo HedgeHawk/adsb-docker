@@ -6,7 +6,8 @@ EOF
 
 if [ -n "${PF_KEY}" ] && [ -n "${DUMP1090_HOST}" ] && [ -n "${RECEIVER_LATITUDE}" ] && [ -n "${RECEIVER_LONGITUDE}" ]; then
   /usr/bin/pfclient -i /var/run/pfclient.pid -z /etc/pfclient-config.json
-else
   exit 1;
+else
+  exit 0;
 fi
 
