@@ -14,6 +14,7 @@ EOF
 
 if [ -n "${FR24_KEY}" ] && [ -n "${DUMP1090_HOST}" ]; then
   /usr/bin/fr24feed --key=${FR24_KEY} --host=${DUMP1090_HOST}:30005 --receiver=beast-tcp
-else
   exit 1;
+else
+  exit 0;
 fi
