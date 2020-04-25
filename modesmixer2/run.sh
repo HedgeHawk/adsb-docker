@@ -21,4 +21,9 @@ if [ -n "${MAPS_API_KEY}" ]; then
   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --google-key ${MAPS_API_KEY}"
 fi
 
-/usr/bin/modesmixer2 ${CUSTOM_OPTIONS}
+if [ -n "${CUSTOM_OPTIONS}" ]; then
+  /usr/bin/modesmixer2 ${CUSTOM_OPTIONS}
+else
+  exit 1;
+fi
+
