@@ -22,7 +22,11 @@ if [ -n "${MAPS_API_KEY}" ]; then
 fi
 
 if [ -n "${MM2_INPUT}" ]; then
-  /usr/bin/modesmixer2 ${CUSTOM_OPTIONS}
+  if [ -n "${MM2_OUTPUT}" ] || [ -n "${MM2_WEBPORT}" ]; then
+    /usr/bin/modesmixer2 ${CUSTOM_OPTIONS}
+  else
+    exit 1;
+  fi
 else
   exit 1;
 fi
