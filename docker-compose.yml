@@ -2,7 +2,6 @@ version: '3'
 
 services:
   dump1090:
-    env_file: 'config.txt'
     build: ./dump1090-fa
     ports:
       - 30005:30005
@@ -15,7 +14,6 @@ services:
     environment:
       - 'MM2_INPUT=dump1090:30005'
       - 'MM2_WEBPORT=8080'
-    env_file: 'config.txt'
     build: ./modesmixer2
     ports:
       - 8080:8080
@@ -30,7 +28,6 @@ services:
       - 'DUMP1090_HOST=dump1090'
     depends_on:
       - dump1090
-    env_file: 'config.txt'
     build: ./fr24feed
     restart: on-failure
 
@@ -39,8 +36,21 @@ services:
       - 'DUMP1090_HOST=dump1090'
     depends_on:
       - dump1090
-    env_file: 'config.txt'
     build: ./pffeed
     ports:
       - 30053:30053
     restart: on-failure
+
+  adsbexchange:
+    image: mikenye/adsbexchange
+    depends_on:
+      - dump1090
+    restart: on-failure
+    environment:
+      - SITENAME=ADSB_Receiver
+      - BEASTHOST=dump1090
+      - TZ=${RECEIVER_TIMEZONE}
+      - LAT=${RECEIVER_LATITUDE}
+      - LONG=${RECEIVER_LONGITUDE}
+      - ALT=${RECEIVER_ALTITUDE}
+      - UUID=${ADSBX_UUID}
