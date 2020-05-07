@@ -2,15 +2,31 @@
 
 CUSTOM_OPTIONS=""
 if [ -n "${MM2_INPUT}" ]; then
-  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inConnect ${MM2_INPUT}"
-fi
-
-if [ -n "${MM2_MLAT_INPUT}" ]; then
-  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inConnect ${MM2_MLAT_INPUT}"
+	for i in $MM2_INPUT
+	do
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inConnect ${i}"
+	done
 fi
 
 if [ -n "${MM2_OUTPUT}" ]; then
-  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --outConnect ${MM2_OUTPUT}"
+	for i in $MM2_OUTPUT
+	do
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --outConnect ${i}"
+	done
+fi
+
+if [ -n "${MM2_INPUT_SERVER}" ]; then
+	for i in $MM2_INPUT_SERVER
+	do
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inServer ${i}"
+	done
+fi
+
+if [ -n "${MM2_OUTPUT_SERVER}" ]; then
+	for i in $MM2_OUTPUT_SERVER
+	do
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --outServer ${i}"
+	done
 fi
 
 if [ -n "${RECEIVER_LATITUDE}" ] && [ -n "${RECEIVER_LONGITUDE}" ]; then
@@ -21,12 +37,28 @@ if [ -n "${MM2_WEBPORT}" ]; then
   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --web ${MM2_WEBPORT}"
 fi
 
+if [ -n "${MM2_WEBAUTH}" ]; then
+  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --web-auth ${MM2_WEBAUTH}"
+fi
+
 if [ -n "${MAPS_API_KEY}" ]; then
   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --google-key ${MAPS_API_KEY}"
 fi
 
-if [ -n "${MM2_INPUT}" ]; then
-  if [ -n "${MM2_OUTPUT}" ] || [ -n "${MM2_WEBPORT}" ]; then
+if [ -n "${MM2_AIRCRAFT_DB}" ]; then
+  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --db ${MM2_AIRCRAFT_DB}"
+fi
+
+if [ -n "${MM2_ROUTES_DB}" ]; then
+  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --frdb ${MM2_ROUTES_DB}"
+fi
+
+if [ -n "${MM2_SILHOUETTES}" ]; then
+  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --silhouettes ${MM2_SILHOUETTES}"
+fi
+
+if [ -n "${MM2_INPUT}" ] || [ -n "${MM2_INPUT_SERVER}" ]; then
+  if [ -n "${MM2_OUTPUT}" ] || [ -n "${MM2_WEBPORT}" ] || [ -n "${MM2_OUTPUT_SERVER}" ]; then
     /usr/bin/modesmixer2 ${CUSTOM_OPTIONS}
     exit 1;
   else

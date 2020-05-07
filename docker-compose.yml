@@ -14,8 +14,7 @@ services:
   modesmixer2:
     env_file: '.env'
     environment:
-      - 'MM2_INPUT=dump1090:30005'
-      - 'MM2_MLAT_INPUT=adsbexchange:30105'
+      - 'MM2_INPUT=dump1090:30005 adsbexchange:30105'
       - 'MM2_WEBPORT=8080'
     build: ./modesmixer2
     ports:
