@@ -5,6 +5,10 @@ if [ -n "${MM2_INPUT}" ]; then
   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inConnect ${MM2_INPUT}"
 fi
 
+if [ -n "${MM2_MLAT_INPUT}" ]; then
+  CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inConnect ${MM2_MLAT_INPUT}"
+fi
+
 if [ -n "${MM2_OUTPUT}" ]; then
   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --outConnect ${MM2_OUTPUT}"
 fi

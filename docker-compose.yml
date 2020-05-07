@@ -2,6 +2,7 @@ version: '3'
 
 services:
   dump1090:
+    env_file: '.env'
     build: ./dump1090-fa
     ports:
       - 30005:30005
@@ -11,8 +12,10 @@ services:
     restart: unless-stopped
 
   modesmixer2:
+    env_file: '.env'
     environment:
       - 'MM2_INPUT=dump1090:30005'
+      - 'MM2_MLAT_INPUT=adsbexchange:30105'
       - 'MM2_WEBPORT=8080'
     build: ./modesmixer2
     ports:
@@ -21,9 +24,11 @@ services:
       - ./modesmixer2/distances.json:/distances.json
     depends_on:
       - dump1090
+      - adsbexchange
     restart: on-failure
     
   fr24:
+    env_file: '.env'
     environment:
       - 'DUMP1090_HOST=dump1090'
     depends_on:
@@ -32,6 +37,7 @@ services:
     restart: on-failure
 
   pf:
+    env_file: '.env'
     environment:
       - 'DUMP1090_HOST=dump1090'
     depends_on:
@@ -45,6 +51,8 @@ services:
     image: mikenye/adsbexchange
     depends_on:
       - dump1090
+    ports:
+      - 30105:30105
     restart: on-failure
     environment:
       - SITENAME=ADSB_Receiver
