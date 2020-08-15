@@ -10,7 +10,7 @@ RUN apt update && \
       ca-certificates
 COPY install.sh /install.sh
 RUN ["chmod", "+x", "/install.sh"]
-RUN install.sh
+RUN /install.sh
 COPY run.sh /run.sh
 RUN ["chmod", "+x", "/run.sh"]
 
