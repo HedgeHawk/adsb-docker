@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM ubuntu:focal
 RUN apt update && \
     DEBIAN_FRONTEND=noninteractive apt install -y --no-install-recommends\
       curl \
@@ -7,6 +7,7 @@ RUN apt update && \
       netbase \
       sqlite3 \
       openssl \
+      libssl-dev \
       ca-certificates
 COPY install.sh /install.sh
 RUN ["chmod", "+x", "/install.sh"]
