@@ -1,5 +1,5 @@
 #!/bin/bash
-ARCH="$(uname -i)"
+ARCH="$(uname -m)"
 echo Architecture: $ARCH 
 
 if [ "$ARCH" == "x86_64" ]; then 
