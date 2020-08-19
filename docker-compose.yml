@@ -16,14 +16,15 @@ services:
     environment:
       - 'MM2_INPUT=dump1090:30005 adsbexchange:30105'
       - 'MM2_WEBPORT=8080'
-    build: ./modesmixer2
+    build:
+      context: ./modesmixer2
+      dockerfile: ./raspberry/Dockerfile
     ports:
       - 8080:8080
     volumes:
       - ./modesmixer2/distances.json:/distances.json
     depends_on:
       - dump1090
-      - adsbexchange
     restart: on-failure
     
   fr24:
