@@ -15,6 +15,13 @@ if [ -n "${MM2_OUTPUT}" ]; then
 	done
 fi
 
+if [ -n "${MM2_UDP_OUTPUT}" ]; then
+	for i in $MM2_UDP_OUTPUT
+	do
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --outConnectUdp ${i}"
+	done
+fi
+
 if [ -n "${MM2_INPUT_SERVER}" ]; then
 	for i in $MM2_INPUT_SERVER
 	do
