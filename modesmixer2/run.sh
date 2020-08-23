@@ -18,7 +18,7 @@ fi
 if [ -n "${MM2_INPUT_SERVER}" ]; then
 	for i in $MM2_INPUT_SERVER
 	do
-	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inServer ${i}"
+	   CUSTOM_OPTIONS="${CUSTOM_OPTIONS} --inServer ${i} --inServerUdp ${i}"
 	done
 fi
 
