@@ -5,8 +5,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  schedule:
-    - cron:  '17 8 * * 6'
+#  schedule:
+#    - cron:  '17 8 * * 6'
 jobs:
   build-dump1090:
     runs-on: ubuntu-latest
