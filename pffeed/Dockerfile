@@ -4,7 +4,7 @@ RUN apt update && \
     apt install -y \
       wget
 
-RUN wget -O pfclient.tar.gz http://client.planefinder.net/pfclient_4.1.1_armhf.tar.gz
+RUN wget -O pfclient.tar.gz http://client.planefinder.net/pfclient_5.0.161_armhf.tar.gz
 RUN tar xzf pfclient.tar.gz
 
 FROM debian:latest
