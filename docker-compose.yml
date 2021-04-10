@@ -9,6 +9,8 @@ services:
       - 80:80
     devices:
       - /dev/bus/usb
+    volumes:
+      - ./dump1090-fa/dump1090-fa:/etc/default/dump1090-fa
     restart: unless-stopped
 
   modesmixer2:
